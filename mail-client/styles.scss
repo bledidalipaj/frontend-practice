@@ -31,8 +31,11 @@ $searchbar-bg: #EBEBF6;
 $searchbar-text-color: #E0E1EF;
 $red: #F70046;
 $yellow: #FFCD52;
+$light-yellow: #CA9D4A;
 $green: #00CD6E;
 $blue: #2A53FF;
+$white: #FFF;
+$black: #000;
 $sidebar-text-color: #A591B2;
 
 // Utility classes
@@ -71,6 +74,15 @@ $sidebar-text-color: #A591B2;
 
 .bg-blue {
     background-color: $blue !important;
+}
+
+.bg-white {
+    background-color: $white !important;
+}
+
+.wrapper {
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 .hidden {
@@ -137,14 +149,14 @@ body {
     }
 
     .nav-title {
-        color: $sidebar-text-color;
+        color: #5A4761;
         text-transform: uppercase;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         margin-bottom: 15px;
     }
 
     .navigation ul li {
-        margin-bottom: 25px;
+        margin-bottom: 15px;
     }
 
     .icon {
@@ -164,6 +176,10 @@ body {
         a, .icon {
             color: $yellow;
         }
+
+        .number {
+            background: #583F3B;
+        }
     }
 
     .navigation .primary-navigation {
@@ -174,14 +190,30 @@ body {
 
     .settings {
         position: absolute;
-        bottom: 45px;
+        bottom: 35px;
 
         a:hover {
             color: $yellow;
             .icon {
                 color: $yellow;
             }
+
+            .number {
+                background: #583F3B;
+            }
         }
+    }
+
+    .number {
+        width: 35px;
+        text-align: center;
+        display: inline-block;
+        border-radius: 10px;
+        background-color: #3A273E;
+        // the applied padding moves the element down
+        // I should probably restrucutre the html and change the styles
+        // in order to center the element
+        padding: 2px 0; 
     }
 }
 
@@ -209,10 +241,14 @@ body {
             background-color: transparent;
             color: dareken($searchbar-text-color, 7%);
         }
+
+        span {
+            float: right;
+        }
     }
 
     .message {
-        margin-bottom: 45px;
+        margin-bottom: 30px;
         background: $message-bg;
         border-radius: 5px;
         padding: 15px;
@@ -220,6 +256,16 @@ body {
         display: flex;
         flex-direction: column;
         position: relative;
+        border-left: 2px solid transparent;
+        cursor: pointer;
+
+        &.active-message {
+            border-color: $yellow !important;
+        }
+
+        &:hover {
+            border-color: $yellow;
+        }
 
         .message-info {
             display: flex;
@@ -245,6 +291,11 @@ body {
 
         .message-preview {
             margin-top: 15px;
+            color: #969698;
+        }
+
+        .message-status {
+            font-size: 1.1rem;
         }
 
         .message-folder-indicator {
@@ -259,5 +310,101 @@ body {
 }
 
 .mail-viewer {
-    background: rgb(221, 6, 42);
+    overflow-y: scroll;
+    padding: 35px 25px;
+
+    .controls {
+        display: flex;
+        justify-content: space-between;
+        color: #AEB2D1;
+        margin-bottom: 45px;
+        border-bottom: 1px solid #AEB2D1;
+        padding-bottom: 30px;
+
+        button {
+            background: transparent;
+            border: none;
+            font-size: 1.4rem;
+
+            &:first-child {
+                margin-right: 7px;
+            }
+
+            &:hover {
+                color: $black;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .message-info {
+        display: flex;
+    }
+
+    .message-sender-img {
+        margin-right: 30px;
+    }
+
+    .message-sender-img img {
+        width: 45px;
+        border-radius: 100%;
+    }
+
+    .message-subject {
+        font-size: 2.7rem;
+        font-weight: 200;
+        color: #000;
+    }
+
+    .sender-name {
+        margin-bottom: 5px;
+        font-size: 1.4rem;
+    }
+
+    p {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+        color: #969698;
+        line-height: 1.7;
+    }
+
+    .message-content {
+        padding-left: 77px;
+    }
+
+    .message-timestamp {
+        margin-left: auto;
+        font-size: 1.3rem;
+    }
+
+    .open-message {
+        padding-right: 45px;
+    }
+
+    .image-gallery {
+        display: flex;
+        flex-wrap: wrap;
+
+        img {
+            border-radius: 8px;
+            width: 100%; // this is set so the last image can have 100% width
+        }
+
+        .gallery-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 15px;
+
+            img {
+                width: 282px;
+            }
+
+        }
+    }  // end .image-gallery
+
+    .message-footer {
+        padding-left: 77px;
+        margin-top: 10px;
+    }
 }
